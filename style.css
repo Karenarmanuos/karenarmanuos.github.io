@@ -270,6 +270,7 @@ body {
 .hn-line:nth-child(2).anim { animation-delay: .12s; }
 @keyframes slideUp { to { transform: translateY(0); opacity: 1; } }
 .italic { font-style: italic; color: var(--pink); }
+.italic2 { color: var(--pink); }
 .hero-role-wrap {
   display: flex; align-items: center; gap: .75rem; margin-bottom: 1.25rem;
 }
