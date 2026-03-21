@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karen Armanuos — UI/UX Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="karen_style.css">
+</head>
+<body data-theme="light">
+
+<!-- Loading Screen -->
+<div id="loading-screen">
+  <div class="ls-inner">
+    <div class="ls-name">Karen<br><span>Armanuos</span></div>
+    <div class="ls-bar-wrap"><div id="ls-bar"></div></div>
+    <p class="ls-sub">Loading Portfolio</p>
+  </div>
+</div>
+
+<!-- Magnetic Cursor -->
+<div id="cur-outer"></div>
+<div id="cur-inner"></div>
+
+<!-- Toast -->
+<div id="toast-container"></div>
+
+<!-- Scroll Progress -->
+<div id="scroll-progress"></div>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">K<span class="logo-dot">A</span></a>
+    <div class="nav-links">
+      <a href="#work" class="nl">Work</a>
+      <a href="#about" class="nl">About</a>
+      <a href="#process" class="nl">Process</a>
+      <a href="#tools" class="nl">Tools</a>
+      <a href="#contact" class="nl">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button id="theme-toggle" aria-label="Toggle theme">
+        <span class="theme-icon-light">☀</span>
+        <span class="theme-icon-dark">◐</span>
+      </button>
+      <button id="login-btn" class="nav-cta">Admin</button>
+      <button id="logout-btn" class="nav-cta hidden">Logout</button>
+      <button id="hamburger" class="hamburger">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-nav">
+    <a href="#work" class="mn-link">Work</a>
+    <a href="#about" class="mn-link">About</a>
+    <a href="#process" class="mn-link">Process</a>
+    <a href="#tools" class="mn-link">Tools</a>
+    <a href="#contact" class="mn-link">Contact</a>
+  </div>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section id="hero">
+  <div class="hero-bg-circle c1"></div>
+  <div class="hero-bg-circle c2"></div>
+  <div class="hero-bg-circle c3"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-status">
+        <span class="status-dot"></span>
+        <span id="hero-status-text">Available for opportunities</span>
+        <button id="edit-status-btn" class="micro-edit hidden">✎</button>
+      </div>
+      <h1 class="hero-name">
+        <span class="hn-line" id="hero-name-line1">Karen</span>
+        <span class="hn-line italic" id="hero-name-line2">Armanuos</span>
+      </h1>
+      <div class="hero-role-wrap">
+        <span class="hero-role" id="hero-role">UI · UX Designer</span>
+        <button id="edit-role-btn" class="micro-edit hidden">✎</button>
+      </div>
+      <p class="hero-tagline" id="hero-tagline">Designing seamless digital experiences<br>that people actually love to use.</p>
+      <button id="edit-tagline-btn" class="micro-edit block hidden">✎ Edit tagline</button>
+      <div class="hero-actions">
+        <a href="#work" class="btn-pill-primary">View Work</a>
+        <a href="#contact" class="btn-pill-ghost">Let's Talk</a>
+      </div>
+      <div class="hero-socials">
+        <span class="hs-label">Find me</span>
+        <a id="social-behance" href="#" target="_blank" class="hs-link">Behance</a>
+        <a id="social-dribbble" href="#" target="_blank" class="hs-link">Dribbble</a>
+        <a id="social-linkedin" href="#" target="_blank" class="hs-link">LinkedIn</a>
+        <button id="edit-social-btn" class="micro-edit hidden">✎</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img-frame">
+        <img id="hero-image" src="https://placehold.co/480x600/FCE7F3/BE185D?text=Karen" alt="Karen Armanuos">
+        <div class="hif-deco hif-deco1"></div>
+        <div class="hif-deco hif-deco2"></div>
+        <div class="floating-badge fb-top">
+          <span class="fb-icon">✦</span>
+          <span class="fb-txt">Design Thinker</span>
+        </div>
+        <div class="floating-badge fb-bot">
+          <span class="fb-icon">◈</span>
+          <span class="fb-txt">Figma · Sketch · Miro</span>
+        </div>
+      </div>
+      <button id="edit-hero-img-btn" class="micro-edit block hidden">✎ Change Photo</button>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ═══════════════ MARQUEE ═══════════════ -->
+<div class="marquee-wrap" id="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-inner" id="marquee-inner">
+      <span>User Research</span><span class="mx-dot">✦</span>
+      <span>Wireframing</span><span class="mx-dot">✦</span>
+      <span>Prototyping</span><span class="mx-dot">✦</span>
+      <span>Figma</span><span class="mx-dot">✦</span>
+      <span>Sketch</span><span class="mx-dot">✦</span>
+      <span>Design Systems</span><span class="mx-dot">✦</span>
+      <span>Miro</span><span class="mx-dot">✦</span>
+      <span>Notion</span><span class="mx-dot">✦</span>
+      <span>Interaction Design</span><span class="mx-dot">✦</span>
+      <span>Usability Testing</span><span class="mx-dot">✦</span>
+      <span>User Research</span><span class="mx-dot">✦</span>
+      <span>Wireframing</span><span class="mx-dot">✦</span>
+      <span>Prototyping</span><span class="mx-dot">✦</span>
+      <span>Figma</span><span class="mx-dot">✦</span>
+      <span>Sketch</span><span class="mx-dot">✦</span>
+      <span>Design Systems</span><span class="mx-dot">✦</span>
+      <span>Miro</span><span class="mx-dot">✦</span>
+      <span>Notion</span><span class="mx-dot">✦</span>
+      <span>Interaction Design</span><span class="mx-dot">✦</span>
+      <span>Usability Testing</span><span class="mx-dot">✦</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ STATS ═══════════════ -->
+<section id="stats" class="stats-section">
+  <div class="stats-inner">
+    <div class="stat-block">
+      <div class="stat-num" id="stat-projects" data-target="0">—</div>
+      <div class="stat-label" id="stat-lbl-projects">Projects</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat-block">
+      <div class="stat-num" id="stat-clients" data-target="0">—</div>
+      <div class="stat-label" id="stat-lbl-clients">Clients</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat-block">
+      <div class="stat-num" id="stat-hours" data-target="0">—</div>
+      <div class="stat-label" id="stat-lbl-hours">Design Hours</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat-block">
+      <span class="stat-num small" id="stat-tools">Figma</span>
+      <div class="stat-label" id="stat-lbl-tools">Primary Tool</div>
+    </div>
+    <button id="edit-stats-btn" class="micro-edit hidden ml-4">✎ Stats</button>
+  </div>
+  <div class="visitor-row">
+    <span class="visitor-dot"></span>
+    <span id="visitor-count-display">— visitors</span>
+  </div>
+</section>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-left reveal">
+      <p class="section-eyebrow">About Me</p>
+      <h2 class="section-title">Crafting <em>digital experiences</em> that feel human</h2>
+      <div class="about-body" id="about-text">I am Karen, a computer science student currently focused on learning how to create seamless and user-friendly digital experiences through design thinking, wireframing, and prototyping. I'm practicing with tools like Figma, Sketch, Miro, and Notion — building personal projects to enhance my skills. I'm actively seeking internships, collaborations, and mentorships to grow and gain real-world experience. Let's connect and create beautiful, functional interfaces together!</div>
+      <div class="about-chips">
+        <span class="chip">Design Thinking</span>
+        <span class="chip">Wireframing</span>
+        <span class="chip">Prototyping</span>
+        <span class="chip">User Research</span>
+        <span class="chip">Figma</span>
+        <span class="chip">Sketch</span>
+        <span class="chip">Miro</span>
+        <span class="chip">Notion</span>
+      </div>
+      <button id="edit-about-btn" class="micro-edit block hidden">✎ Edit About</button>
+    </div>
+    <div class="about-right reveal">
+      <div class="about-img-wrap">
+        <img id="about-image" src="https://placehold.co/500x640/FCE7F3/BE185D?text=Karen+Armanuos" alt="Karen Armanuos">
+        <div class="aimg-accent"></div>
+        <div class="aimg-quote">
+          <span class="aq-mark">"</span>
+          <span class="aq-text">Design is not just what it looks like — it's how it works.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SELECTED WORK ═══════════════ -->
+<section id="work">
+  <div class="work-header reveal">
+    <div>
+      <p class="section-eyebrow">Selected Work</p>
+      <h2 class="section-title">Case <em>Studies</em></h2>
+    </div>
+    <div class="work-header-right">
+      <div id="filter-bar" class="filter-bar">
+        <button class="fb active" data-cat="all">All</button>
+        <button class="fb" data-cat="Mobile App">Mobile</button>
+        <button class="fb" data-cat="Web App">Web</button>
+        <button class="fb" data-cat="Branding">Branding</button>
+      </div>
+      <button id="add-case-btn" class="btn-admin hidden">+ Add</button>
+    </div>
+  </div>
+  <div id="cases-grid" class="cases-grid">
+    <div class="loader-wrap"><div class="loader"></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════ DESIGN PROCESS ═══════════════ -->
+<section id="process">
+  <div class="process-header reveal">
+    <p class="section-eyebrow">How I Work</p>
+    <h2 class="section-title">My Design <em>Process</em></h2>
+    <button id="add-process-btn" class="btn-admin hidden">+ Add Step</button>
+  </div>
+  <div id="process-steps" class="process-steps">
+    <div class="loader-wrap"><div class="loader"></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════ TOOLS ═══════════════ -->
+<section id="tools">
+  <div class="tools-header reveal">
+    <p class="section-eyebrow">My Toolkit</p>
+    <h2 class="section-title">Tools I <em>Master</em></h2>
+    <button id="add-tool-btn" class="btn-admin hidden">+ Add Tool</button>
+  </div>
+  <div id="tools-grid" class="tools-grid">
+    <div class="loader-wrap"><div class="loader"></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════ TIMELINE ═══════════════ -->
+<section id="timeline-sec">
+  <div class="tl-header reveal">
+    <p class="section-eyebrow">Journey</p>
+    <h2 class="section-title">Education & <em>Experience</em></h2>
+    <button id="add-timeline-btn" class="btn-admin hidden">+ Add</button>
+  </div>
+  <div id="timeline-list" class="timeline-list">
+    <div class="timeline-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════ TESTIMONIALS ═══════════════ -->
+<section id="testimonials">
+  <div class="test-header reveal">
+    <p class="section-eyebrow">Kind Words</p>
+    <h2 class="section-title">What People <em>Say</em></h2>
+  </div>
+  <div id="testimonials-grid" class="testimonials-grid">
+    <div class="loader-wrap"><div class="loader"></div></div>
+  </div>
+  <div class="test-cta">
+    <button id="leave-feedback-btn" class="btn-pill-ghost">Leave a Review ✦</button>
+  </div>
+</section>
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<section id="contact">
+  <div class="contact-inner reveal">
+    <div class="contact-left">
+      <p class="section-eyebrow">Contact</p>
+      <h2 class="contact-title">Let's create <em>something</em> beautiful together.</h2>
+      <p class="contact-sub">Open to internships, collaborations & mentorships.</p>
+    </div>
+    <div class="contact-right">
+      <div class="contact-email-box">
+        <span class="ceb-label">Email me at</span>
+        <div class="ceb-email">
+          <span id="email-text">karenarmanuos@gmail.com</span>
+          <button id="copy-email-btn" class="copy-btn" title="Copy email">⧉</button>
+        </div>
+        <a href="mailto:karenarmanuos@gmail.com" id="mailto-btn" class="btn-pill-primary">Send Email →</a>
+        <button id="edit-email-btn" class="micro-edit block hidden">✎ Edit Email</button>
+      </div>
+      <p id="copy-msg" class="copy-msg">Copied! ✓</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer id="footer">
+  <div class="footer-inner">
+    <span class="footer-name">Karen Armanuos</span>
+    <span class="footer-copy">© <span id="year"></span> · UI/UX Designer</span>
+    <div class="footer-socials">
+      <a id="fs-behance" href="#" target="_blank">Be</a>
+      <a id="fs-dribbble" href="#" target="_blank">Dr</a>
+      <a id="fs-linkedin" href="#" target="_blank">Li</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button id="back-to-top" title="Back to top">↑</button>
+
+<!-- ═══════════════ MODALS ═══════════════ -->
+
+<!-- Login -->
+<div id="login-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <button class="modal-x modal-close">✕</button>
+    <h3 class="modal-title">Admin Login</h3>
+    <form id="login-form">
+      <input type="email" id="email" placeholder="Email" class="m-input" required>
+      <input type="password" id="password" placeholder="Password" class="m-input" required>
+      <p id="login-error" class="m-error"></p>
+      <button type="submit" id="login-submit-btn" class="m-btn w-full">Login</button>
+    </form>
+  </div>
+</div>
+
+<!-- Text Edit -->
+<div id="text-edit-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <button class="modal-x modal-close">✕</button>
+    <h3 id="te-title" class="modal-title">Edit Text</h3>
+    <form id="text-edit-form">
+      <input type="hidden" id="te-doc">
+      <input type="hidden" id="te-field">
+      <textarea id="te-content" class="m-input h-24"></textarea>
+      <div class="m-actions">
+        <button type="button" class="m-btn-ghost modal-close">Cancel</button>
+        <button type="submit" class="m-btn">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- About Edit -->
+<div id="about-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <button class="modal-x modal-close">✕</button>
+    <h3 class="modal-title">Edit About</h3>
+    <form id="about-form">
+      <textarea id="about-modal-text" class="m-input h-36" placeholder="About me text..."></textarea>
+      <input type="url" id="about-image-url" class="m-input" placeholder="Profile image URL">
+      <div class="m-actions">
+        <button type="button" class="m-btn-ghost modal-close">Cancel</button>
+        <button type="submit" class="m-btn">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Hero Image Edit -->
+<div id="hero-img-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <button class="modal-x modal-close">✕</button>
+    <h3 class="modal-title">Change Hero Photo</h3>
+    <form id="hero-img-form">
+      <input type="url" id="hero-img-url" class="m-input" placeholder="Image URL">
+      <div class="m-actions">
+        <button type="button" class="m-btn-ghost modal-close">Cancel</button>
+        <button type="submit" class="m-btn">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Stats Edit -->
+<div id="stats-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <button class="modal-x modal-close">✕</button>
+    <h3 class="modal-title">Edit Stats</h3>
+    <form id="stats-form" class="grid2">
+      <div><label class="m-label">Projects</label><input type="number" id="se-projects" class="m-input" min="0"></div>
+      <div><label class="m-label">Clients</label><input type="number" id="se-clients" class="m-input" min="0"></div>
+      <div><label class="m-label">Design Hours</label><input type="number" id="se-hours" class="m-input" min="0"></div>
+      <div><label class="m-label">Primary Tool</label><input type="text" id="se-tools" class="m-input" placeholder="Figma"></div>
+      <div class="col-span-2 m-actions">
+        <button type="button" class="m-btn-ghost modal-close">Cancel</button>
+        <button type="submit" class="m-btn">Save Stats</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Social Links Edit -->
+<div id="social-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <button class="modal-x modal-close">✕</button>
+    <h3 class="modal-title">Edit Social Links</h3>
+    <form id="social-form">
+      <label class="m-label">Behance</label>
+      <input type="url" id="sl-behance" class="m-input" placeholder="https://behance.net/...">
+      <label class="m-label">Dribbble</label>
+      <input type="url" id="sl-dribbble" class="m-input" placeholder="https://dribbble.com/...">
+      <label class="m-label">LinkedIn</label>
+      <input type="url" id="sl-linkedin" class="m-input" placeholder="https://linkedin.com/in/...">
+      <div class="m-actions">
+        <button type="button" class="m-btn-ghost modal-close">Cancel</button>
+        <button type="submit" class="m-btn">Save Links</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Email Edit -->
+<div id="email-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <button class="modal-x modal-close">✕</button>
+    <h3 class="modal-title">Edit Email</h3>
+    <form id="email-form">
+      <input type="email" id="email-input" class="m-input" placeholder="your@email.com" required>
+      <div class="m-actions">
+        <button type="button" class="m-btn-ghost modal-close">Cancel</button>
+        <button type="submit" class="m-btn">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Case Study Add/Edit -->
+<div id="case-modal" class="modal-overlay hidden">
+  <div class="modal-box modal-wide">
+    <button class="modal-x modal-close">✕</button>
+    <h3 id="case-modal-title" class="modal-title">Add Case Study</h3>
+    <form id="case-form" class="modal-scroll">
+      <input type="hidden" id="case-id">
+      <input type="text" id="case-title" class="m-input" placeholder="Project Title" required>
+      <select id="case-category" class="m-input">
+        <option value="Mobile App">Mobile App</option>
+        <option value="Web App">Web App</option>
+        <option value="Branding">Branding</option>
+        <option value="E-Commerce">E-Commerce</option>
+        <option value="Healthcare">Healthcare</option>
+      </select>
+      <textarea id="case-desc" class="m-input h-20" placeholder="Brief description..." required></textarea>
+      <textarea id="case-challenge" class="m-input h-20" placeholder="The Challenge..."></textarea>
+      <textarea id="case-solution" class="m-input h-20" placeholder="The Solution..."></textarea>
+      <input type="text" id="case-tools" class="m-input" placeholder="Tools (Figma, Sketch, ...)">
+      <input type="url" id="case-thumbnail" class="m-input" placeholder="Cover Image URL">
+      <input type="url" id="case-prototype" class="m-input" placeholder="Prototype/Figma Link (optional)">
+      <div id="case-imgs-wrap"></div>
+      <button type="button" id="add-case-img-btn" class="m-btn-ghost w-full">+ Add Image</button>
+      <div class="m-actions">
+        <button type="button" class="m-btn-ghost modal-close">Cancel</button>
+        <button type="submit" class="m-btn">Save Case Study</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Case Detail -->
+<div id="case-detail-modal" class="modal-overlay hidden">
+  <div class="modal-box modal-wide">
+    <button class="modal-x modal-close">✕</button>
+    <div class="cd-header">
+      <span id="cd-category" class="cd-badge">Category</span>
+      <h2 id="cd-title" class="cd-title"></h2>
+    </div>
+    <img id="cd-main-img" src="" alt="" class="cd-main-img">
+    <div class="cd-grid">
+      <div><h4 class="cd-section-title">The Challenge</h4><p id="cd-challenge" class="cd-text"></p></div>
+      <div><h4 class="cd-section-title">The Solution</h4><p id="cd-solution" class="cd-text"></p></div>
+    </div>
+    <div class="cd-tools-wrap"><h4 class="cd-section-title">Tools Used</h4><div id="cd-tools" class="cd-tools"></div></div>
+    <div id="cd-gallery" class="cd-gallery"></div>
+    <div id="cd-links" class="cd-links"></div>
+  </div>
+</div>
+
+<!-- Process Add/Edit -->
+<div id="process-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <button class="modal-x modal-close">✕</button>
+    <h3 id="process-modal-title" class="modal-title">Add Process Step</h3>
+    <form id="process-form">
+      <input type="hidden" id="process-id">
+      <input type="text" id="process-num" class="m-input" placeholder="Number (e.g. 01)" required>
+      <input type="text" id="process-icon" class="m-input" placeholder="Emoji Icon (e.g. 🔍)" required>
+      <input type="text" id="process-title-inp" class="m-input" placeholder="Step title" required>
+      <textarea id="process-desc-inp" class="m-input h-20" placeholder="Description..." required></textarea>
+      <div class="m-actions">
+        <button type="button" class="m-btn-ghost modal-close">Cancel</button>
+        <button type="submit" class="m-btn">Save Step</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Tool Add/Edit -->
+<div id="tool-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <button class="modal-x modal-close">✕</button>
+    <h3 id="tool-modal-title" class="modal-title">Add Tool</h3>
+    <form id="tool-form">
+      <input type="hidden" id="tool-id">
+      <input type="text" id="tool-name" class="m-input" placeholder="Tool name" required>
+      <input type="text" id="tool-icon" class="m-input" placeholder="Emoji icon" required>
+      <select id="tool-category" class="m-input">
+        <option value="Design">Design</option>
+        <option value="Prototyping">Prototyping</option>
+        <option value="Research">Research</option>
+        <option value="Productivity">Productivity</option>
+      </select>
+      <label class="m-label">Proficiency <span id="tool-lvl-display">80%</span></label>
+      <input type="range" id="tool-level" min="0" max="100" value="80" class="m-range">
+      <div class="m-actions">
+        <button type="button" class="m-btn-ghost modal-close">Cancel</button>
+        <button type="submit" class="m-btn">Save Tool</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Timeline Add/Edit -->
+<div id="timeline-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <button class="modal-x modal-close">✕</button>
+    <h3 id="tl-modal-title" class="modal-title">Add Timeline Item</h3>
+    <form id="timeline-form">
+      <input type="hidden" id="tl-id">
+      <input type="text" id="tl-year" class="m-input" placeholder="Year (e.g. 2024 – Present)" required>
+      <input type="text" id="tl-role" class="m-input" placeholder="Role / Degree" required>
+      <input type="text" id="tl-company" class="m-input" placeholder="Company / University" required>
+      <input type="text" id="tl-icon" class="m-input" placeholder="Emoji (e.g. 🎓)">
+      <textarea id="tl-desc" class="m-input h-20" placeholder="Description..."></textarea>
+      <input type="text" id="tl-tags" class="m-input" placeholder="Tags (comma separated)">
+      <div class="m-actions">
+        <button type="button" class="m-btn-ghost modal-close">Cancel</button>
+        <button type="submit" class="m-btn">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Testimonial Submit -->
+<div id="testimonial-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <button class="modal-x modal-close">✕</button>
+    <h3 class="modal-title">Leave a Review ✦</h3>
+    <form id="testimonial-form">
+      <input type="text" id="t-name" class="m-input" placeholder="Your Name" required>
+      <input type="text" id="t-role" class="m-input" placeholder="Your Role / Company">
+      <textarea id="t-message" class="m-input h-24" placeholder="Your review..." required></textarea>
+      <div class="star-row">
+        <label class="m-label">Rating</label>
+        <div id="star-rating">
+          <span class="star" data-val="1">★</span>
+          <span class="star" data-val="2">★</span>
+          <span class="star" data-val="3">★</span>
+          <span class="star" data-val="4">★</span>
+          <span class="star" data-val="5">★</span>
+        </div>
+        <input type="hidden" id="t-rating" value="0">
+      </div>
+      <p class="m-note">Reviews appear after admin approval.</p>
+      <div class="m-actions">
+        <button type="button" class="m-btn-ghost modal-close">Cancel</button>
+        <button type="submit" id="t-submit-btn" class="m-btn">Submit Review</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Testimonials Admin -->
+<div id="testimonial-admin-modal" class="modal-overlay hidden">
+  <div class="modal-box modal-wide">
+    <button class="modal-x modal-close">✕</button>
+    <h3 class="modal-title">Pending Reviews</h3>
+    <div id="pending-list" class="pending-list"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="karen_script.js"></script>
+</body>
+</html>
