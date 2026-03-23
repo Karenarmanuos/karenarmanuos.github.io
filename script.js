@@ -360,23 +360,41 @@ async function loadCases() {
         catch { snap = await getDocs(collection(db,'caseStudies')); }
         grid.innerHTML = ''; caseData = [];
         if(snap.empty) { grid.innerHTML='<p style="color:var(--muted);font-family:var(--mono);font-size:.8rem;padding:3rem;text-align:center;grid-column:1/-1">No case studies yet.</p>'; return; }
-        snap.forEach(d => { const c={id:d.id,...d.data()}; caseData.push(c); grid.appendChild(mkCaseCard(c)); });
+        let ci=0; snap.forEach(d => { const c={id:d.id,...d.data()}; caseData.push(c); grid.appendChild(mkCaseCard(c,ci++)); });
         initFilter(); revealNewItems();
     } catch(e) { grid.innerHTML='<p style="color:#DC2626;padding:3rem;grid-column:1/-1">Error loading.</p>'; console.error(e); }
 }
 function getCatClass(cat) { return {Mobile:'mobile','Mobile App':'mobile','Web App':'web','Branding':'branding','E-Commerce':'ecomm','Healthcare':'health'}[cat]||'mobile'; }
-function mkCaseCard(cs) {
-    const card = document.createElement('div'); card.className='case-card reveal'; card.dataset.cat=cs.category||'';
-    card.style.cursor='pointer'; card.onclick=()=>showCase(cs.id);
-    card.innerHTML=`<div class="case-card-img-wrap"><img class="case-card-img" src="${cs.thumbnail||'https://placehold.co/600x400/FFE4E6/BE185D?text='+encodeURIComponent(cs.title||'Case Study')}" alt="${esc(cs.title)}" loading="lazy"></div><div class="case-card-body"><div class="case-cat ${getCatClass(cs.category)}">${cs.category||'Design'}</div><h3>${esc(cs.title||'')}</h3><p>${esc(cs.description||'')}</p><div class="case-card-tools">${(cs.tools||[]).slice(0,3).map(t=>`<span class="cct">${esc(t)}</span>`).join('')}</div><div class="case-card-footer">${isAdmin?`<div style="display:flex;gap:.4rem"><button class="ab-edit" onclick="event.stopPropagation();editCase('${cs.id}')">Edit</button><button class="ab-del" onclick="event.stopPropagation();delCase('${cs.id}')">Del</button></div>`:'<span></span>'}<span class="case-view">View Study →</span></div></div>`;
+function mkCaseCard(cs, idx=0) {
+    const card = document.createElement('div');
+    card.className = 'case-card reveal'; card.dataset.cat = cs.category||'';
+    card.style.cursor = 'pointer'; card.onclick = ()=>showCase(cs.id);
+    // Behance style: image fills top, info overlays on hover
+    card.innerHTML = `
+      <div class="case-card-img-wrap">
+        <img class="case-card-img" src="${cs.thumbnail||'https://placehold.co/600x'+(350+idx*80)+'/FFE4E6/BE185D?text='+encodeURIComponent(cs.title||'Project')}" alt="${esc(cs.title)}" loading="lazy">
+        <div class="case-card-overlay">
+          <div class="case-cat ${getCatClass(cs.category)}">${cs.category||'Design'}</div>
+          <h3>${esc(cs.title||'')}</h3>
+          <div class="case-card-tools">${(cs.tools||[]).slice(0,3).map(t=>`<span class="cct">${esc(t)}</span>`).join('')}</div>
+          <span class="case-view">View Case Study →</span>
+        </div>
+      </div>
+      <div class="case-card-body">
+        <p>${esc(cs.description||'')}</p>
+        ${isAdmin?`<div style="display:flex;gap:.4rem;margin-top:.75rem"><button class="ab-edit" onclick="event.stopPropagation();editCase('${cs.id}')">Edit</button><button class="ab-del" onclick="event.stopPropagation();delCase('${cs.id}')">Del</button></div>`:''}
+      </div>`;
     return card;
 }
 window.showCase = id => {
     const cs = caseData.find(x=>x.id===id); if(!cs) return;
     g('cd-title').innerText=cs.title||''; g('cd-category').innerText=cs.category||'';
-    g('cd-main-img').src=cs.thumbnail||''; g('cd-challenge').innerText=cs.challenge||''; g('cd-solution').innerText=cs.solution||'';
+    const mainImg = g('cd-main-img');
+    mainImg.src = cs.thumbnail||'';
+    mainImg.style.cursor = cs.thumbnail ? 'zoom-in' : 'default';
+    mainImg.onclick = cs.thumbnail ? ()=>openLightbox(cs.thumbnail) : null; g('cd-challenge').innerText=cs.challenge||''; g('cd-solution').innerText=cs.solution||'';
     g('cd-tools').innerHTML=(cs.tools||[]).map(t=>`<span class="cct">${esc(t)}</span>`).join('');
-    g('cd-gallery').innerHTML=(cs.images||[]).map(img=>`<img src="${img.url||img}" alt="">`).join('');
+    g('cd-gallery').innerHTML=(cs.images||[]).map(img=>`<img src="${img.url||img}" alt="" class="cd-gallery-img" onclick="openLightbox('${img.url||img}')">`).join('');
     const lc=g('cd-links'); lc.innerHTML='';
     if(cs.prototypeLink){const a=document.createElement('a');a.href=cs.prototypeLink;a.target='_blank';a.className='btn-pill-primary';a.style.fontSize='.78rem';a.innerText='View Prototype →';lc.appendChild(a);}
     openModal('case-detail-modal');
@@ -523,8 +541,26 @@ window.approveTest = async (id,btn) => { btn.textContent='...'; await updateDoc(
 window.delTest = async (id,pending=false) => { if(!confirm('Delete?')) return; await deleteDoc(doc(db,'testimonials',id)); toast('Deleted','info'); if(pending)loadPendingTests();else loadTestimonials(); };
 
 // ════════════════════════════════
-//  REVEAL HELPER
+//  LIGHTBOX
 // ════════════════════════════════
+window.openLightbox = src => {
+    let lb = document.getElementById('lightbox');
+    if (!lb) {
+        lb = document.createElement('div');
+        lb.id = 'lightbox';
+        lb.innerHTML = `<div id="lb-backdrop"></div><img id="lb-img" src=""><button id="lb-close">✕</button>`;
+        document.body.appendChild(lb);
+        lb.addEventListener('click', e => { if(e.target===lb||e.target.id==='lb-backdrop'||e.target.id==='lb-close') closeLightbox(); });
+        document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+    }
+    document.getElementById('lb-img').src = src;
+    lb.classList.add('lb-open');
+    document.body.style.overflow = 'hidden';
+};
+function closeLightbox() {
+    const lb = document.getElementById('lightbox');
+    if(lb) { lb.classList.remove('lb-open'); document.body.style.overflow = ''; }
+}
 function revealNewItems() {
     const obs = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.08});
     document.querySelectorAll('.reveal:not(.visible)').forEach(el=>obs.observe(el));
@@ -560,7 +596,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         g('login-btn').classList.toggle('hidden', isAdmin);
         g('logout-btn').classList.toggle('hidden', !isAdmin);
         ['add-case-btn','add-process-btn','add-tool-btn','add-timeline-btn','edit-stats-btn'].forEach(id=>{const b=g(id);if(b)b.classList.toggle('hidden',!isAdmin);});
-        ['edit-about-btn','edit-social-btn','edit-status-btn','edit-role-btn','edit-tagline-btn','edit-hero-img-btn','edit-email-btn'].forEach(id=>{const b=g(id);if(b)b.style.display=isAdmin?'inline-flex':'none';});
+        ['edit-about-btn','edit-social-btn','edit-status-btn','edit-role-btn','edit-tagline-btn','edit-hero-img-btn','edit-email-btn'].forEach(id=>{const b=g(id);if(b)b.classList.toggle('hidden',!isAdmin);});
         if(isAdmin && !g('reviews-nav-btn')) {
             const rb=document.createElement('button'); rb.id='reviews-nav-btn'; rb.className='nav-cta'; rb.textContent='⚡ Reviews';
             rb.onclick=()=>{openModal('testimonial-admin-modal');loadPendingTests();};
